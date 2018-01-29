@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void reversePrint(char[] , int);
+void reversePrint(int , int);
 int sumPrint(int, int);
 
 int main() {
@@ -19,9 +19,12 @@ int main() {
 	int number = 0;
 	printf("Enter a number: ");
 	scanf_s("%10s", input, 10);
-	//reversePrint(input, 0);
+	printf("\n");
 	number = atoi(input);
-	printf("%d", sumPrint(number, 0));
+	printf("Reversed: ");
+	reversePrint(number, 0);
+	printf("\n");
+	printf("Sum of digits: %d", sumPrint(number, 0));
 
 
 
@@ -29,14 +32,15 @@ int main() {
 	return 0;
 }
 
-/*void reversePrint(arr, start) {
-	int length = strlen(arr);
-	char temp[length];
-	if (length != start){
-		reversePrint(arr, start + 1);
+void reversePrint(arr, start) {
+	char temp[10];
+	char out[10];
+	_itoa_s(arr, temp, 10, 10);
+	if (temp[start + 1] != NULL) {
+			reversePrint(arr, start + 1);
+	}
+	printf("%d", temp[start] - '0');
 }
-	printf("%c", temp[start]);
-}*/
 
 int sumPrint(number, start) {
 	char temp[10];
