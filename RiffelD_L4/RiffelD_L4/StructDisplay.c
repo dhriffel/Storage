@@ -17,7 +17,7 @@ int main() {
 
 	struct student* stuPoint = malloc(sizeof(struct student));
 	printf("Enter name of student: ");
-	scanf_s("%20[a-zA-Z ]", stuPoint->name, 20);
+	scanf_s("%20[a-zA-Z]", stuPoint->name, 20);
 	printf("Enter age of student: ");
 	scanf("%d", &(stuPoint->age));
 	printf("Enter year of student (1-4): ");
