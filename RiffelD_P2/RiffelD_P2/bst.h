@@ -9,5 +9,3 @@ int searchTree(struct bstNode*, int);
 void inorderTrav(struct bstNode*, char*);
 void memRelease(struct bstNode*);
 
-
-
