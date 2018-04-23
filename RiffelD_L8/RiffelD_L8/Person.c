@@ -10,7 +10,14 @@ Person* new_Person(const char* const pFirstName, const char* const pLastName) {
 		return NULL;
 	}
 	pObj->pFirstName = malloc(sizeof(char)*(strlen(pFirstName) + 1));
-	if (pObj->pLastName = NULL)
+	if (pObj->pFirstName == NULL)
+	{
+		return NULL;
+	}
+	strcpy(pObj->pFirstName, pFirstName);
+
+	pObj->pLastName= malloc(sizeof(char)*(strlen(pLastName) + 1));
+	if (pObj->pLastName == NULL)
 	{
 		return NULL;
 	}

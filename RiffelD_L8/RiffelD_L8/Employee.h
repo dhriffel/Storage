@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include "Person.h"
 typedef struct _Employee

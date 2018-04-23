@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-Employee* new_Employee(const char* const pFirstName, const char* const pLastName,
+Person* new_Employee(const char* const pFirstName, const char* const pLastName,
 	const char* const pDepartment, const char* const pCompany,
 	int nSalary) {
 	Employee* pObj = NULL;
@@ -25,6 +25,12 @@ Employee* new_Employee(const char* const pFirstName, const char* const pLastName
 	if (pObj->pCompany == NULL) {
 		return NULL;
 	}
+
+	pObj->pBaseObj->Delete = delete_Person;
+	pObj->pBaseObj->Display = Person_DisplayInfo;
+	pObj->pBaseObj->WriteToFile = Person_WriteToFile;
+
+	return pObj;
 };	//constructor
 void delete_Employee(Person* const pPersonObj) {
 	return;

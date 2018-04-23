@@ -1,3 +1,4 @@
+#pragma once
 typedef struct _Person Person;
 
 //declaration of pointers to functions
@@ -7,7 +8,7 @@ typedef void(*fptrDelete)(Person*);
 
 typedef struct _Person {
 	char* pFirstName;
-	char*pLastName;
+	char* pLastName;
 	//interface for function
 	fptrDisplayInfo Display;
 	fptrWriteToFile WriteToFile;
