@@ -7,11 +7,14 @@
 
 int uiMainMenu(Node* tree) {
 	char input;
-	printf("Enter (i)nsert, (s)earch, inorder (t)raversal, or (q)uit: ");
+	printf("Enter (i)nsert, (d)elete, (s)earch, inorder (t)raversal, or (q)uit: ");
 	scanf(" %c", &input);
 	switch (input) {
 	case 'i':
 		uiInsert(tree);
+		return 1;
+	case 'd':
+		uiDeleteNode(tree);
 		return 1;
 	case 's':
 		uiSearch(tree);
@@ -45,7 +48,7 @@ void uiSearch(Node* tree) {
 	printf("Enter a number to search for: ");
 	scanf(" %c", &input);
 	num = input - '0';
-	if(searchTree(tree, num) == 1)
+	if (searchTree(tree, num) == 1)
 		printf("%d is in the tree.\n", num);
 	else
 		printf("%d is not in the tree.\n", num);
@@ -56,11 +59,27 @@ void uiPrintTree(Node* tree) {
 	char* buff = malloc(sizeof(char) * 10);
 	char* tempbuff = buff;
 	inorderTrav(tree, tempbuff, 0);
-		while (*buff != NULL) {
-			printf("%c\n", *buff);
-			buff++;
-		}
-		printf("\n");
-	
+	buff++;
+	while (*buff != NULL) {
+		printf("%c ", *buff);
+		buff++;
+	}
+	printf("\n");
+
+	return;
+}
+
+void uiDeleteNode(Node* tree) {
+	char input;
+	int num;
+	printf("Enter a number to delete: ");
+	scanf(" %c", &input);
+	num = input - '0';
+	if (searchTree(tree, num) == 1) {
+		deleteNode(tree, num);
+		printf("%d has been deleted.\n", num);
+	}
+	else
+		printf("%d is not in the tree.\n", num);
 	return;
 }

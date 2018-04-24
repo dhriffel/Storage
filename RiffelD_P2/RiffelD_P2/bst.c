@@ -5,63 +5,89 @@
 
 
 
-Node* insertNode(Node* node, int k) {
-	if (node->key == NULL) {
-		
+Node* buildNode(int k){
+Node* newNode = (Node*)malloc(sizeof(Node));
+newNode->key = k;
+newNode->left = NULL;
+newNode->right = NULL;
+
+return newNode;
+}
+
+void insertNode(Node* node, int k) {
+	if (node == NULL) {
+		return;
+	}
+	if (node->key == NULL || node->key == 0) {
 		node->key = k;
-		node->left = malloc(sizeof(Node));
-		node->left->key = NULL;
-		node->right = malloc(sizeof(Node));
-		node->right->key = NULL;
-		return node;
+		return;
 	}
 
-	else if (k < node->key) {
-		node->left = insertNode(node->left, k);
+		
+	if (node->key > k) {
+		if (node->left == NULL)
+		{
+			node->left = buildNode(k);
+			return;
+		}
+		insertNode(node->left, k);
 	}
-
 	else {
-		node->right = insertNode(node->right, k);
-	}
+		if (node->right == NULL)
+		{
+			node->right = buildNode(k);
+			return;
+		}
 
-	return node;
+		insertNode(node->right, k);
+	}
 }
 
 int searchTree(Node* node, int k) {
-	if (node->key == NULL) {
+	if (node == NULL) {
 		return 0;
 	}
 
-	if (node->key == k) {
-		return 1;
-	}
-
-	else if (k < node->key) {
+	if (node->key > k)
+	{
 		return searchTree(node->left, k);
 	}
-
-	else {
+	else if (node->key < k)
+	{
 		return searchTree(node->right, k);
 	}
 
-	return 0;
+	return 1;
 }
 
-void inorderTrav(Node* node, char* buff) {
-	if (node->key != NULL) {
-
+char* inorderTrav(Node* node, char* buff, int level) {
 	
+	
+	int temp = 0;
+	while (temp < level)
+	{
+		++temp;
+	}
 
-
-	inorderTrav(node->left, buff + 1);
-	*buff = node->key;
-	//sprintf(buff, "%c", node->key);
-	inorderTrav(node->right, buff + 1);
-}
+	if (node->left != NULL)
+	{
+		
+		buff = inorderTrav(node->left, buff, level + 1);
+	}
+sprintf(buff, "%d", node->key);
+	buff ++;
+	if (node->right != NULL)
+	{
+		
+		buff = inorderTrav(node->right, buff, level + 1);
+	}
+	
 }
 
 void memRelease(struct bstNode* node) {
 	if (node == NULL)
+		return;
+	if (node->key == NULL)
 		return;
 
 	memRelease(node->left);
