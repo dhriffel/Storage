@@ -50,6 +50,14 @@ char* inorderTrav(Node* root, char* buff)
 	{
 		buff = inorderTrav(root->left, buff);
 		sprintf(buff, "%d", root->key);
+		while (*buff != NULL) {
+			buff++;
+		}
+
+		/*if (*buff == '-')
+			buff++;
+		buff++;*/
+		sprintf(buff, ";");
 		buff++;
 		buff = inorderTrav(root->right, buff);
 	}
